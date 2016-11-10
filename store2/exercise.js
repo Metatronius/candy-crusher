@@ -21,20 +21,56 @@ Array.pop(store2['sales dates']['Carmel Twists']);
 // Iterate over the store2 sale dates for Caramel Twists. Use this to create an object containing dates as the key and the value as the quantity sold on that day.
 var obj = {}
 var last = "";
-for (var i = 0; i < store2['sales dates']['Carmel Twists'].length; i++){
-  if (last === store2['sales dates']['Carmel Twists'][i]){
-    obj[last]++;
-  }
-  else {
-    last = store2['sales dates']['Carmel Twists'][i];
-    obj += {last : 1};
-  }
+for (var i = 0; i < store2['sales dates']['Carmel Twists'].length; i++)
+{
+    if (last === store2['sales dates']['Carmel Twists'][i])
+    {
+        obj[last]++;
+    }
+    else
+    {
+        last = store2['sales dates']['Carmel Twists'][i];
+        obj +=
+        {
+            last: 1
+        };
+    }
 }
 
 // Iterate over store2's sale dates data to find which day had the most total number of sales. How did you calculate this?
-for (var i in store2['sales dates']){
-  
+var allSales = []
+for (var j in store2['sales dates'])
+{
+    allSales.concat(j)
 }
+var mostSalesByDate = [
+    []
+]
+for (var i = 0; i < allSales.length; i++)
+{
+    var flag = true;
+    for (var j = 0; j < mostSalesByDate.length; j++)
+    {
+        if (mostSalesByDate[j][0] === allSales[i])
+        {
+            mostSalesByDate[j][1]++;
+            flag = false;
+        }
+    }
+    if (flag)
+    {
+        mostSalesByDate.concat([allSales[i], 1])
+    }
+}
+var largest = ["", 0];
+for (var i = 0; i < mostSalesByDate.length; i++)
+{
+    if (mostSalesByDate[i][1] > largest[1])
+    {
+        largest = mostSalesByDate[i];
+    }
+}
+console.log(largest[0]);
 
 /////////// CHALLENGE ///////////
 
